@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+         <page
+            name="Icy"
+            class="icy.icy4eclipse.core.Icy4EclipsePreferencePage"
+            id="icy.icy4eclipse.core.Page1">
+      </page>
+   </extension>
+   <extension
+         point="org.eclipse.ui.actionSets">
+         <actionSet
+            label="Icy"
+            visible="true"
+            id="icy.icy4eclipse.core.actionset">
+         <menu
+               label="Icy"
+               id="icy.icy4eclipse.core.menu">
+            <separator
+                  name="group">
+            </separator>
+         </menu>
+         <action
+               label="Update Icy"
+               icon="icons/icyupdate.png"
+               tooltip="Update Icy"
+               class="icy.icy4eclipse.core.action.StartIcyUpdateAction"
+               menubarPath="icy.icy4eclipse.core.menu/group"
+               toolbarPath="Normal/additions"
+               id="icy.icy4eclipse.core.startupdate">
+         </action>
+         <action
+               label="Start Icy (debug mode)"
+               icon="icons/icydebug.png"
+               tooltip="Start Icy (debug mode)"
+               class="icy.icy4eclipse.core.action.StartIcyDebugAction"
+               menubarPath="icy.icy4eclipse.core.menu/group"
+               toolbarPath="Normal/additions"
+               id="icy.icy4eclipse.core.startdebug">
+         </action>
+         <action
+               label="Start Icy"
+               icon="icons/icyrun.png"
+               tooltip="Start Icy"
+               class="icy.icy4eclipse.core.action.StartIcyAction"
+               menubarPath="icy.icy4eclipse.core.menu/group"
+               toolbarPath="Normal/additions"
+               id="icy.icy4eclipse.core.start">
+         </action>
+      </actionSet>
+   </extension>
+<extension
+         point="org.eclipse.ui.propertyPages">
+      <page
+            objectClass="org.eclipse.core.resources.IProject"
+            adaptable="true"
+            name="Icy"
+            class="icy.icy4eclipse.core.IcyProjectPropertyPage"
+            id="icy.icy4eclipse.core.IcyProjectPropertyPage">
+         <filter
+               name="nature"
+               value="org.eclipse.jdt.core.javanature">
+         </filter>
+      </page>
+   </extension>
+   <extension
+         id="icynature"
+         name="Icy Nature"
+         point="org.eclipse.core.resources.natures">
+      <runtime>
+         <run
+               class="icy.icy4eclipse.core.IcyProject">
+         </run>
+      </runtime>
+   </extension>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <wizard
+            name="Icy Plugin"
+            icon="icons/icynew.png"
+            category="org.eclipse.jdt.ui.java"
+            class="icy.icy4eclipse.core.NewIcyProjectWizard"
+            project="true"
+            finalPerspective="org.eclipse.jdt.ui.JavaPerspective"
+            id="icy.icy4eclipse.core.NewIcyProjectWizard">
+         <description>
+            Creates a new Java project for an Icy plugin
+         </description>
+      </wizard>
+   </extension>
+</plugin>

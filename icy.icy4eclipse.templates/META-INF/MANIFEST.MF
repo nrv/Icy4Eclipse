@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-SymbolicName: icy.icy4eclipse.templates;singleton=true
+Bundle-Version: 0.3.2.qualifier
+Bundle-Name: Icy4Eclipse templates
+Bundle-Vendor: Nicolas HERVE
+Provide-Package: icy.icy4eclipse.templates
+Require-Bundle: org.eclipse.core.runtime;bundle-version="3.6.0",
+ org.eclipse.jdt.core;bundle-version="3.6.0",
+ icy.icy4eclipse.core;bundle-version="0.3.2",
+ org.eclipse.ui;bundle-version="3.6.0"
+Bundle-Activator: icy.icy4eclipse.templates.TemplatesActivator
+
