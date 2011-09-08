@@ -32,6 +32,8 @@ public interface Icy4EclipseCommonResources {
 	String[] ICY_PRG_ARGS = {};
 	String ICY_PLUGINS_DIR = "plugins";
 	String ICY_PLUGINS_PACKAGE = "plugins";
+	String ICY_SETTING_XML = "setting.xml";
+	String ICY_VERSION_XML = "version.xml";
 	String ICY_BYPASS_JARCLASSLOADER_ARG = "--disableJCL";
 	
 	String ICY4ECLIPSE_LABEL = "Icy";

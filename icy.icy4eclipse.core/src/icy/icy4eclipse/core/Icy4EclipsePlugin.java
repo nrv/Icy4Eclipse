@@ -19,7 +19,6 @@
 
 package icy.icy4eclipse.core;
 
-
 import java.io.File;
 import java.io.FileFilter;
 import java.io.PrintStream;
@@ -111,9 +110,10 @@ public class Icy4EclipsePlugin extends AbstractUIPlugin implements Icy4EclipseCo
 			throw new Icy4EclipseException("Check your parameters, you need to set the Icy developer login");
 		}
 
-		File pluginsDirectory = new File(hd, ICY_PLUGINS_DIR);
-		if (!pluginsDirectory.exists()) {
-			throw new Icy4EclipseException("Check your parameters, unable to find plugins directory : " + pluginsDirectory.getAbsolutePath());
+		File setXML = new File(hd, ICY_SETTING_XML);
+		File versXML = new File(hd, ICY_VERSION_XML);
+		if (!(setXML.exists() && versXML.exists())) {
+			throw new Icy4EclipseException("Check your parameters, unable to find standard Icy files ("+ICY_SETTING_XML+", "+ICY_VERSION_XML+") in directory : " + hd);
 		}
 	}
 
@@ -168,7 +168,7 @@ public class Icy4EclipsePlugin extends AbstractUIPlugin implements Icy4EclipseCo
 		}
 		return classname;
 	}
-	
+
 	public static String getFullPackageName(String devName, String subpackageName) {
 		return ICY_PLUGINS_PACKAGE + "." + devName + "." + subpackageName;
 	}
@@ -273,7 +273,7 @@ public class Icy4EclipsePlugin extends AbstractUIPlugin implements Icy4EclipseCo
 	public Icy4EclipsePlugin() {
 		super();
 	}
-	
+
 	private List<IcyProject> computeOpenIcyProjectsList() {
 		IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
 		IProject[] allProjects = root.getProjects();
@@ -357,13 +357,13 @@ public class Icy4EclipsePlugin extends AbstractUIPlugin implements Icy4EclipseCo
 
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
-		
+
 		context.registerService(IcyProjectTemplate.class.getName(), new DefaultIcyProjectTemplate(), null);
-		
+
 		plugin = this;
 		templateLocator = new IcyTemplateLocator(context);
 	}
-	
+
 	private void startIcyInternal(boolean debug, boolean bypassJarclassloader) throws CoreException {
 		logInfo("Starting Icy - (debug = " + debug + ") (disableJCL = " + bypassJarclassloader + ")");
 
@@ -395,9 +395,11 @@ public class Icy4EclipsePlugin extends AbstractUIPlugin implements Icy4EclipseCo
 			}
 
 			// Add plugins jars to system class loader
-			List<File> jars = getAllJarFiles(pluginsDirectory);
-			for (File f : jars) {
-				classpath.add(f.getAbsolutePath());
+			if (pluginsDirectory.exists()) {
+				List<File> jars = getAllJarFiles(pluginsDirectory);
+				for (File f : jars) {
+					classpath.add(f.getAbsolutePath());
+				}
 			}
 		}
 
