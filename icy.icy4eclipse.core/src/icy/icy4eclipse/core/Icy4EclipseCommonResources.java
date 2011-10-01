@@ -1,5 +1,5 @@
 /*
- * Copyright 2011 Nicolas HervŽ.
+ * Copyright 2011 Nicolas Hervé.
  * 
  * This file is part of Icy4Eclipse.
  * 
@@ -20,7 +20,7 @@
 package icy.icy4eclipse.core;
 
 /**
- * @author Nicolas HervŽ - n.herve@laposte.net
+ * @author Nicolas Hervé - n.herve@laposte.net
  *
  */
 public interface Icy4EclipseCommonResources {
@@ -48,6 +48,10 @@ public interface Icy4EclipseCommonResources {
 	String ICY4ECLIPSE_PREF_MAINCLASS_KEY = "icy_mainclass";
 	String ICY4ECLIPSE_PREF_MAINCLASS_LABEL = "Icy main class";
 	String ICY4ECLIPSE_PREF_MAINCLASS_DEFAULT = "icy.main.Icy";
+	
+	String ICY4ECLIPSE_PREF_ICYJAR_KEY = "icy_jar";
+	String ICY4ECLIPSE_PREF_ICYJAR_LABEL = "Load icy.jar";
+	String ICY4ECLIPSE_PREF_ICYJAR_DEFAULT = "true";
 	
 	String ICY4ECLIPSE_PREF_MEMORY_KEY = "icy_memory";
 	String ICY4ECLIPSE_PREF_MEMORY_LABEL = "Memory allocated for the VM";

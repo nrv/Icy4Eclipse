@@ -1,5 +1,5 @@
 /*
- * Copyright 2011 Nicolas HervŽ.
+ * Copyright 2011 Nicolas Hervé.
  * 
  * This file is part of Icy4Eclipse.
  * 
@@ -19,6 +19,7 @@
 
 package icy.icy4eclipse.core;
 
+import org.eclipse.jface.preference.BooleanFieldEditor;
 import org.eclipse.jface.preference.DirectoryFieldEditor;
 import org.eclipse.jface.preference.PreferencePage;
 import org.eclipse.jface.preference.StringFieldEditor;
@@ -31,7 +32,7 @@ import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
 
 /**
- * @author Nicolas HervŽ - n.herve@laposte.net
+ * @author Nicolas Hervé - n.herve@laposte.net
  * 
  */
 public class Icy4EclipsePreferencePage extends PreferencePage implements IWorkbenchPreferencePage, Icy4EclipseCommonResources {
@@ -44,6 +45,7 @@ public class Icy4EclipsePreferencePage extends PreferencePage implements IWorkbe
 	private StringFieldEditor icyDeveloper;
 	private StringFieldEditor icyMemory;
 	private StringFieldEditor icyMainClass;
+	private BooleanFieldEditor icyJar;
 
 	@Override
 	public void init(IWorkbench arg0) {
@@ -53,6 +55,10 @@ public class Icy4EclipsePreferencePage extends PreferencePage implements IWorkbe
 		
 		if (!(getPreferenceStore().contains(ICY4ECLIPSE_PREF_MAINCLASS_KEY)) || (getPreferenceStore().getString(ICY4ECLIPSE_PREF_MAINCLASS_KEY).length() == 0) ) {
 			getPreferenceStore().setValue(ICY4ECLIPSE_PREF_MAINCLASS_KEY, ICY4ECLIPSE_PREF_MAINCLASS_DEFAULT);
+		}
+		
+		if (!(getPreferenceStore().contains(ICY4ECLIPSE_PREF_ICYJAR_KEY)) || (getPreferenceStore().getString(ICY4ECLIPSE_PREF_ICYJAR_KEY).length() == 0) ) {
+			getPreferenceStore().setValue(ICY4ECLIPSE_PREF_ICYJAR_KEY, ICY4ECLIPSE_PREF_ICYJAR_DEFAULT);
 		}
 	}
 
@@ -80,6 +86,12 @@ public class Icy4EclipsePreferencePage extends PreferencePage implements IWorkbe
 		icyMainClass = new StringFieldEditor(ICY4ECLIPSE_PREF_MAINCLASS_KEY, ICY4ECLIPSE_PREF_MAINCLASS_LABEL, classGroup);
 		icyMainClass.setPreferenceStore(getPreferenceStore());
 		icyMainClass.load();
+		
+		Group jarGroup = new Group(parent, SWT.NONE);
+		jarGroup.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+		icyJar = new BooleanFieldEditor(ICY4ECLIPSE_PREF_ICYJAR_KEY, ICY4ECLIPSE_PREF_ICYJAR_LABEL, jarGroup);
+		icyJar.setPreferenceStore(getPreferenceStore());
+		icyJar.load();
 
 		return parent;
 	}
@@ -90,6 +102,7 @@ public class Icy4EclipsePreferencePage extends PreferencePage implements IWorkbe
 		icyMemory.store();
 		icyDeveloper.store();
 		icyMainClass.store();
+		icyJar.store();
 
 		return true;
 	}

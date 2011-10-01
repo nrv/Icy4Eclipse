@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Icy4Eclipse
 Bundle-SymbolicName: icy.icy4eclipse.core;singleton:=true
-Bundle-Version: 0.3.2.qualifier
+Bundle-Version: 0.3.3.qualifier
 Bundle-Activator: icy.icy4eclipse.core.Icy4EclipsePlugin
 Bundle-Vendor: Nicolas HERVE
 Require-Bundle: org.eclipse.ui;bundle-version="3.6.0",

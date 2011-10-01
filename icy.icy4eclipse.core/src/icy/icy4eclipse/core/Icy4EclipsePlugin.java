@@ -1,5 +1,5 @@
 /*
- * Copyright 2011 Nicolas HervŽ.
+ * Copyright 2011 Nicolas Hervé.
  * 
  * This file is part of Icy4Eclipse.
  * 
@@ -68,7 +68,7 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
 /**
- * @author Nicolas HervŽ - n.herve@laposte.net
+ * @author Nicolas Hervé - n.herve@laposte.net
  * 
  */
 public class Icy4EclipsePlugin extends AbstractUIPlugin implements Icy4EclipseCommonResources {
@@ -113,7 +113,7 @@ public class Icy4EclipsePlugin extends AbstractUIPlugin implements Icy4EclipseCo
 		File setXML = new File(hd, ICY_SETTING_XML);
 		File versXML = new File(hd, ICY_VERSION_XML);
 		if (!(setXML.exists() && versXML.exists())) {
-			throw new Icy4EclipseException("Check your parameters, unable to find standard Icy files ("+ICY_SETTING_XML+", "+ICY_VERSION_XML+") in directory : " + hd);
+			throw new Icy4EclipseException("Check your parameters, unable to find standard Icy files (" + ICY_SETTING_XML + ", " + ICY_VERSION_XML + ") in directory : " + hd);
 		}
 	}
 
@@ -184,6 +184,11 @@ public class Icy4EclipsePlugin extends AbstractUIPlugin implements Icy4EclipseCo
 	static String getIcyDeveloper() {
 		IPreferenceStore pref = getDefaultPreferenceStore();
 		return pref.getString(ICY4ECLIPSE_PREF_DEVELOPER_KEY);
+	}
+
+	static boolean loadIcyJar() {
+		IPreferenceStore pref = getDefaultPreferenceStore();
+		return pref.getBoolean(ICY4ECLIPSE_PREF_ICYJAR_KEY);
 	}
 
 	static String getIcyHomeDir() {
@@ -380,9 +385,11 @@ public class Icy4EclipsePlugin extends AbstractUIPlugin implements Icy4EclipseCo
 		List<IcyProject> icyProjects = computeOpenIcyProjectsList();
 		List<String> classpath = new ArrayList<String>();
 
-		// Add Icy jars to system class loader
-		for (String s : ICY_JARS) {
-			classpath.add(hd + File.separator + s);
+		// Add Icy jars to system class loader if needed
+		if (loadIcyJar()) {
+			for (String s : ICY_JARS) {
+				classpath.add(hd + File.separator + s);
+			}
 		}
 
 		if (bypassJarclassloader) {

@@ -2,7 +2,7 @@
 <feature
       id="icy.icy4eclipse"
       label="icy4eclipse"
-      version="0.3.2.qualifier"
+      version="0.3.3.qualifier"
       provider-name="Nicolas HERVE">
 
    <description url="http://www.herve.name/pmwiki.php/Main/Icy4Eclipse">
