@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-SymbolicName: icy.icy4eclipse.templates;singleton=true
-Bundle-Version: 0.3.3.qualifier
+Bundle-Version: 0.3.4.qualifier
 Bundle-Name: Icy4Eclipse templates
 Bundle-Vendor: Nicolas HERVE
 Provide-Package: icy.icy4eclipse.templates
