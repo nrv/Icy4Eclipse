@@ -1,5 +1,5 @@
 /*
- * Copyright 2011 Nicolas Hervé.
+ * Copyright 2011, 2012 Nicolas HervÃ©.
  * 
  * This file is part of Icy4Eclipse.
  * 
@@ -32,7 +32,7 @@ import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
 
 /**
- * @author Nicolas Hervé - n.herve@laposte.net
+ * @author Nicolas HervÃ© - n.herve@laposte.net
  * 
  */
 public class Icy4EclipsePreferencePage extends PreferencePage implements IWorkbenchPreferencePage, Icy4EclipseCommonResources {
@@ -47,6 +47,7 @@ public class Icy4EclipsePreferencePage extends PreferencePage implements IWorkbe
 	private StringFieldEditor icyJVMArgs;
 	private StringFieldEditor icyMainClass;
 	private BooleanFieldEditor icyJar;
+	private StringFieldEditor icyBypassedJars;
 
 	@Override
 	public void init(IWorkbench arg0) {
@@ -98,6 +99,12 @@ public class Icy4EclipsePreferencePage extends PreferencePage implements IWorkbe
 		icyMainClass.setPreferenceStore(getPreferenceStore());
 		icyMainClass.load();
 		
+		Group bypassGroup = new Group(parent, SWT.NONE);
+		bypassGroup.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+		icyBypassedJars = new StringFieldEditor(ICY4ECLIPSE_PREF_BYPASS_JARS_KEY, ICY4ECLIPSE_PREF_BYPASS_JARS_LABEL, bypassGroup);
+		icyBypassedJars.setPreferenceStore(getPreferenceStore());
+		icyBypassedJars.load();
+		
 		Group jarGroup = new Group(parent, SWT.NONE);
 		jarGroup.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 		icyJar = new BooleanFieldEditor(ICY4ECLIPSE_PREF_ICYJAR_KEY, ICY4ECLIPSE_PREF_ICYJAR_LABEL, jarGroup);
@@ -115,7 +122,8 @@ public class Icy4EclipsePreferencePage extends PreferencePage implements IWorkbe
 		icyMainClass.store();
 		icyJar.store();
 		icyJVMArgs.store();
-		
+		icyBypassedJars.store();
+
 		return true;
 	}
 

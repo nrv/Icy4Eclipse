@@ -3,8 +3,5 @@
    <description name="icy4eclipse" url="http://www.herve.name/icy4eclipse/updates">
       Regular builds of the icy4eclipse plugin
    </description>
-   <feature url="features/icy.icy4eclipse_0.3.4.201212132147.jar" id="icy.icy4eclipse" version="0.3.4.201212132147">
-      <category name="Icy"/>
-   </feature>
    <category-def name="Icy" label="Icy"/>
 </site>

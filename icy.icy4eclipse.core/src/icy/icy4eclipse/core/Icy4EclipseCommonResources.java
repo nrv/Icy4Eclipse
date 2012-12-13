@@ -1,5 +1,5 @@
 /*
- * Copyright 2011 Nicolas Hervé.
+ * Copyright 2011, 2012 Nicolas HervÃ©.
  * 
  * This file is part of Icy4Eclipse.
  * 
@@ -20,7 +20,7 @@
 package icy.icy4eclipse.core;
 
 /**
- * @author Nicolas Hervé - n.herve@laposte.net
+ * @author Nicolas HervÃ© - n.herve@laposte.net
  *
  */
 public interface Icy4EclipseCommonResources {
@@ -44,6 +44,9 @@ public interface Icy4EclipseCommonResources {
 	
 	String ICY4ECLIPSE_PREF_DEVELOPER_LABEL = "Developer login";
 	String ICY4ECLIPSE_PREF_DEVELOPER_KEY = "icy_developer";
+	
+	String ICY4ECLIPSE_PREF_BYPASS_JARS_LABEL = "Bypassed jars";
+	String ICY4ECLIPSE_PREF_BYPASS_JARS_KEY = "icy_bypass_jar";
 
 	String ICY4ECLIPSE_PREF_MAINCLASS_KEY = "icy_mainclass";
 	String ICY4ECLIPSE_PREF_MAINCLASS_LABEL = "Icy main class";

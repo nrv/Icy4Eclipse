@@ -1,5 +1,5 @@
 /*
- * Copyright 2011 Nicolas Hervé.
+ * Copyright 2011 Nicolas Hervï¿½.
  * 
  * This file is part of Icy4Eclipse.
  * 
@@ -26,6 +26,8 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IProjectDescription;
@@ -68,7 +70,7 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
 /**
- * @author Nicolas Hervé - n.herve@laposte.net
+ * @author Nicolas Hervï¿½ - n.herve@laposte.net
  * 
  */
 public class Icy4EclipsePlugin extends AbstractUIPlugin implements Icy4EclipseCommonResources {
@@ -407,10 +409,39 @@ public class Icy4EclipsePlugin extends AbstractUIPlugin implements Icy4EclipseCo
 			}
 
 			// Add plugins jars to system class loader
+			IPreferenceStore pref = getPreferenceStore();
+			String bypassJars = pref.getString(ICY4ECLIPSE_PREF_BYPASS_JARS_KEY);
+			List<Pattern> bypassRegexp = null;
+			if (bypassJars != null) {
+				bypassJars = bypassJars.trim();
+				if (bypassJars.length() > 0) {
+					String[] bypass = bypassJars.split(":");
+					bypassRegexp = new ArrayList<Pattern>();
+					for (String r : bypass) {
+						bypassRegexp.add(Pattern.compile("^(.*)" + r + "$", Pattern.CASE_INSENSITIVE));
+					}
+				}
+			}
+
 			if (pluginsDirectory.exists()) {
 				List<File> jars = getAllJarFiles(pluginsDirectory);
 				for (File f : jars) {
-					classpath.add(f.getAbsolutePath());
+					boolean add = true;
+					String path = f.getAbsolutePath();
+					if (bypassRegexp != null) {
+						for (Pattern p : bypassRegexp) {
+							Matcher m = p.matcher(path);
+							if (m.matches()) {
+								logInfo(" - bypassing jar : " + p.pattern() + " -> " + path);
+								add = false;
+								break;
+							}
+						}
+					}
+
+					if (add) {
+						classpath.add(path);
+					}
 				}
 			}
 		}
