@@ -28,7 +28,7 @@ public interface Icy4EclipseCommonResources {
 	String ICY_NATURE_ID = ICY4ECLIPSE_PLUGIN_ID + ".icynature" ; 
 	
 	String[] ICY_JARS = {"icy.jar"};
-	String[] ICY_VM_ARGS = {"-XX:CompileCommand=exclude,icy/image/IcyBufferedImage.createFrom"};
+	String[] ICY_VM_MANDATORY_ARGS = {"-XX:CompileCommand=exclude,icy/image/IcyBufferedImage.createFrom"};
 	String[] ICY_PRG_ARGS = {};
 	String ICY_PLUGINS_DIR = "plugins";
 	String ICY_PLUGINS_PACKAGE = "plugins";
@@ -56,6 +56,10 @@ public interface Icy4EclipseCommonResources {
 	String ICY4ECLIPSE_PREF_MEMORY_KEY = "icy_memory";
 	String ICY4ECLIPSE_PREF_MEMORY_LABEL = "Memory allocated for the VM";
 	String ICY4ECLIPSE_PREF_MEMORY_DEFAULT = "300";
+	
+	String ICY4ECLIPSE_PREF_OTHER_JVM_ARGS_KEY = "icy_other_jvm_args";
+	String ICY4ECLIPSE_PREF_OTHER_JVM_ARGS_LABEL = "Other JVM parameters";
+	String ICY4ECLIPSE_PREF_OTHER_JVM_ARGS_DEFAULT = "";
 	
 	String ICY4ECLIPSE_ISICYPROJECT_LABEL = "Is an Icy project";
 	String ICY4ECLIPSE_FIXBUILDPATH_LABEL = "Fix buildpath";

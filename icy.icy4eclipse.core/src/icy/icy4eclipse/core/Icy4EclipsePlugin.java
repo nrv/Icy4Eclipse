@@ -327,6 +327,11 @@ public class Icy4EclipsePlugin extends AbstractUIPlugin implements Icy4EclipseCo
 		IPreferenceStore pref = getPreferenceStore();
 		return pref.getString(ICY4ECLIPSE_PREF_MEMORY_KEY);
 	}
+	
+	String getOtherJVMArgs() {
+		IPreferenceStore pref = getPreferenceStore();
+		return pref.getString(ICY4ECLIPSE_PREF_OTHER_JVM_ARGS_KEY);
+	}
 
 	IcyTemplateLocator getTemplateLocator() {
 		return templateLocator;
@@ -420,10 +425,11 @@ public class Icy4EclipsePlugin extends AbstractUIPlugin implements Icy4EclipseCo
 		}
 
 		StringBuffer jvmArguments = new StringBuffer();
-		for (String arg : ICY_VM_ARGS) {
+		for (String arg : ICY_VM_MANDATORY_ARGS) {
 			jvmArguments.append(" " + arg);
 		}
 		jvmArguments.append(" -Xmx" + getIcyMemory() + "m");
+		jvmArguments.append(" " + getOtherJVMArgs());
 
 		// Launching the JVM
 		ILaunchConfigurationType launchType = DebugPlugin.getDefault().getLaunchManager().getLaunchConfigurationType("org.eclipse.jdt.launching.localJavaApplication");

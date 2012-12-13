@@ -44,6 +44,7 @@ public class Icy4EclipsePreferencePage extends PreferencePage implements IWorkbe
 	private DirectoryFieldEditor icyHome;
 	private StringFieldEditor icyDeveloper;
 	private StringFieldEditor icyMemory;
+	private StringFieldEditor icyJVMArgs;
 	private StringFieldEditor icyMainClass;
 	private BooleanFieldEditor icyJar;
 
@@ -51,6 +52,10 @@ public class Icy4EclipsePreferencePage extends PreferencePage implements IWorkbe
 	public void init(IWorkbench arg0) {
 		if (!(getPreferenceStore().contains(ICY4ECLIPSE_PREF_MEMORY_KEY)) || (getPreferenceStore().getString(ICY4ECLIPSE_PREF_MEMORY_KEY).length() == 0) ) {
 			getPreferenceStore().setValue(ICY4ECLIPSE_PREF_MEMORY_KEY, ICY4ECLIPSE_PREF_MEMORY_DEFAULT);
+		}
+		
+		if (!(getPreferenceStore().contains(ICY4ECLIPSE_PREF_OTHER_JVM_ARGS_KEY)) || (getPreferenceStore().getString(ICY4ECLIPSE_PREF_OTHER_JVM_ARGS_KEY).length() == 0) ) {
+			getPreferenceStore().setValue(ICY4ECLIPSE_PREF_OTHER_JVM_ARGS_KEY, ICY4ECLIPSE_PREF_OTHER_JVM_ARGS_DEFAULT);
 		}
 		
 		if (!(getPreferenceStore().contains(ICY4ECLIPSE_PREF_MAINCLASS_KEY)) || (getPreferenceStore().getString(ICY4ECLIPSE_PREF_MAINCLASS_KEY).length() == 0) ) {
@@ -81,6 +86,12 @@ public class Icy4EclipsePreferencePage extends PreferencePage implements IWorkbe
 		icyMemory.setPreferenceStore(getPreferenceStore());
 		icyMemory.load();
 		
+		Group jvmArgsGroup = new Group(parent, SWT.NONE);
+		jvmArgsGroup.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+		icyJVMArgs = new StringFieldEditor(ICY4ECLIPSE_PREF_OTHER_JVM_ARGS_KEY, ICY4ECLIPSE_PREF_OTHER_JVM_ARGS_LABEL, jvmArgsGroup);
+		icyJVMArgs.setPreferenceStore(getPreferenceStore());
+		icyJVMArgs.load();
+		
 		Group classGroup = new Group(parent, SWT.NONE);
 		classGroup.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 		icyMainClass = new StringFieldEditor(ICY4ECLIPSE_PREF_MAINCLASS_KEY, ICY4ECLIPSE_PREF_MAINCLASS_LABEL, classGroup);
@@ -103,7 +114,8 @@ public class Icy4EclipsePreferencePage extends PreferencePage implements IWorkbe
 		icyDeveloper.store();
 		icyMainClass.store();
 		icyJar.store();
-
+		icyJVMArgs.store();
+		
 		return true;
 	}
 

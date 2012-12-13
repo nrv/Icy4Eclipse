@@ -2,7 +2,7 @@
 <feature
       id="icy.icy4eclipse"
       label="icy4eclipse"
-      version="0.3.3.qualifier"
+      version="0.3.4.qualifier"
       provider-name="Nicolas HERVE">
 
    <description url="http://www.herve.name/pmwiki.php/Main/Icy4Eclipse">
@@ -10,7 +10,7 @@
    </description>
 
    <copyright url="http://www.herve.name">
-      Copyright 2011 Nicolas Hervé.
+      Copyright 2011-2012 Nicolas Hervé.
    </copyright>
 
    <license url="http://www.herve.name/icy4eclipse/COPYING">
