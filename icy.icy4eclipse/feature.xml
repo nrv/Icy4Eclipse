@@ -2,7 +2,7 @@
 <feature
       id="icy.icy4eclipse"
       label="icy4eclipse"
-      version="0.3.5.qualifier"
+      version="0.3.6.qualifier"
       provider-name="Nicolas HERVE">
 
    <description url="http://www.herve.name/pmwiki.php/Main/Icy4Eclipse">
@@ -10,7 +10,7 @@
    </description>
 
    <copyright url="http://www.herve.name">
-      Copyright 2011-2012 Nicolas Hervé.
+      Copyright 2011-2014 Nicolas Hervé.
    </copyright>
 
    <license url="http://www.herve.name/icy4eclipse/COPYING">
@@ -20,6 +20,10 @@ Icy4Eclipse is distributed in the hope that it will be useful, but WITHOUT ANY W
 
 You should have received a copy of the GNU General Public License along with Icy4Eclipse. If not, see http://www.herve.name/icy4eclipse/COPYING.
    </license>
+
+   <url>
+      <discovery label="Icy4Eclipse main site" url="http://www.herve.name/pmwiki.php/Main/Icy4Eclipse"/>
+   </url>
 
    <plugin
          id="icy.icy4eclipse.core"
